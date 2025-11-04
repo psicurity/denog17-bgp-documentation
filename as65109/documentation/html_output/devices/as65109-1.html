@@ -1,0 +1,1495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>as65109-1.md</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; margin: 40px; }
+        pre { background: #f4f4f4; padding: 10px; border-radius: 5px; }
+        code { background: #f4f4f4; padding: 2px 4px; border-radius: 3px; }
+    </style>
+</head>
+<body>
+<h1 id="as65109-1">as65109-1</h1>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ul>
+<li><a href="#management">Management</a></li>
+<li><a href="#banner">Banner</a></li>
+<li><a href="#management-interfaces">Management Interfaces</a></li>
+<li><a href="#ip-name-servers">IP Name Servers</a></li>
+<li><a href="#clock-settings">Clock Settings</a></li>
+<li><a href="#ntp">NTP</a></li>
+<li><a href="#management-ssh">Management SSH</a></li>
+<li><a href="#management-api-http">Management API HTTP</a></li>
+<li><a href="#authentication">Authentication</a></li>
+<li><a href="#local-users">Local Users</a></li>
+<li><a href="#enable-password">Enable Password</a></li>
+<li><a href="#aaa-authentication">AAA Authentication</a></li>
+<li><a href="#aaa-authorization">AAA Authorization</a></li>
+<li><a href="#monitoring">Monitoring</a></li>
+<li><a href="#terminattr-daemon">TerminAttr Daemon</a></li>
+<li><a href="#spanning-tree">Spanning Tree</a></li>
+<li><a href="#spanning-tree-summary">Spanning Tree Summary</a></li>
+<li><a href="#spanning-tree-device-configuration">Spanning Tree Device Configuration</a></li>
+<li><a href="#internal-vlan-allocation-policy">Internal VLAN Allocation Policy</a></li>
+<li><a href="#internal-vlan-allocation-policy-summary">Internal VLAN Allocation Policy Summary</a></li>
+<li><a href="#internal-vlan-allocation-policy-device-configuration">Internal VLAN Allocation Policy Device Configuration</a></li>
+<li><a href="#vlans">VLANs</a></li>
+<li><a href="#vlans-summary">VLANs Summary</a></li>
+<li><a href="#vlans-device-configuration">VLANs Device Configuration</a></li>
+<li><a href="#mac-address-table">MAC Address Table</a></li>
+<li><a href="#mac-address-table-summary">MAC Address Table Summary</a></li>
+<li><a href="#mac-address-table-device-configuration">MAC Address Table Device Configuration</a></li>
+<li><a href="#interfaces">Interfaces</a></li>
+<li><a href="#switchport-default">Switchport Default</a></li>
+<li><a href="#interface-defaults">Interface Defaults</a></li>
+<li><a href="#ethernet-interfaces">Ethernet Interfaces</a></li>
+<li><a href="#loopback-interfaces">Loopback Interfaces</a></li>
+<li><a href="#routing">Routing</a></li>
+<li><a href="#service-routing-protocols-model">Service Routing Protocols Model</a></li>
+<li><a href="#virtual-router-mac-address">Virtual Router MAC Address</a></li>
+<li><a href="#ip-routing">IP Routing</a></li>
+<li><a href="#ipv6-routing">IPv6 Routing</a></li>
+<li><a href="#static-routes">Static Routes</a></li>
+<li><a href="#arp">ARP</a></li>
+<li><a href="#router-isis">Router ISIS</a></li>
+<li><a href="#router-bgp">Router BGP</a></li>
+<li><a href="#bfd">BFD</a></li>
+<li><a href="#router-bfd">Router BFD</a></li>
+<li><a href="#mpls">MPLS</a></li>
+<li><a href="#mpls-and-ldp">MPLS and LDP</a></li>
+<li><a href="#mpls-interfaces">MPLS Interfaces</a></li>
+<li><a href="#mpls-device-configuration">MPLS Device Configuration</a></li>
+<li><a href="#multicast">Multicast</a></li>
+<li><a href="#ip-igmp-snooping">IP IGMP Snooping</a></li>
+<li><a href="#acl">ACL</a></li>
+<li><a href="#standard-access-lists">Standard Access-lists</a></li>
+<li><a href="#vrf-instances">VRF Instances</a></li>
+<li><a href="#vrf-instances-summary">VRF Instances Summary</a></li>
+<li><a href="#vrf-instances-device-configuration">VRF Instances Device Configuration</a></li>
+<li><a href="#eos-cli-device-configuration">EOS CLI Device Configuration</a></li>
+</ul>
+<h2 id="management">Management</h2>
+<h3 id="banner">Banner</h3>
+<h4 id="login-banner">Login Banner</h4>
+<pre><code class="language-text">!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!                                                                        !!
+!! IF THE COMPANY HAS NOT AUTHORISED YOUR ACCESS TO THIS SYSTEM YOU       !!
+!! WILL COMMIT A CRIMINAL OFFENCE IF YOU DO NOT IMMEDIATELY DISCONNECT.   !!
+!!                                                                        !!
+!! UNAUTHORISED ACCESS IS STRICTLY FORBIDDEN AND A DISCIPLINARY OFFENCE.  !!
+!!                                                                        !!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+EOF
+</code></pre>
+<h3 id="management-interfaces">Management Interfaces</h3>
+<h4 id="management-interfaces-summary">Management Interfaces Summary</h4>
+<h5 id="ipv4">IPv4</h5>
+<table>
+<thead>
+<tr>
+<th>Management Interface</th>
+<th>Description</th>
+<th>Type</th>
+<th>VRF</th>
+<th>IP Address</th>
+<th>Gateway</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Management1</td>
+<td>OOB_MANAGEMENT</td>
+<td>oob</td>
+<td>MGMT</td>
+<td>172.100.100.133/24</td>
+<td>172.100.100.1</td>
+</tr>
+</tbody>
+</table>
+<h5 id="ipv6">IPv6</h5>
+<table>
+<thead>
+<tr>
+<th>Management Interface</th>
+<th>Description</th>
+<th>Type</th>
+<th>VRF</th>
+<th>IPv6 Address</th>
+<th>IPv6 Gateway</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Management1</td>
+<td>OOB_MANAGEMENT</td>
+<td>oob</td>
+<td>MGMT</td>
+<td>2001:172:100:100::133/24</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h4 id="management-interfaces-device-configuration">Management Interfaces Device Configuration</h4>
+<pre><code class="language-eos">!
+interface Management1
+   description OOB_MANAGEMENT
+   no shutdown
+   vrf MGMT
+   ip address 172.100.100.133/24
+   ipv6 enable
+   ipv6 address 2001:172:100:100::133/24
+   no lldp transmit
+   no lldp receive
+</code></pre>
+<h3 id="ip-name-servers">IP Name Servers</h3>
+<h4 id="ip-name-servers-summary">IP Name Servers Summary</h4>
+<table>
+<thead>
+<tr>
+<th>Name Server</th>
+<th>VRF</th>
+<th>Priority</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>8.8.8.8</td>
+<td>MGMT</td>
+<td>-</td>
+</tr>
+<tr>
+<td>8.8.4.4</td>
+<td>MGMT</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h4 id="ip-name-servers-device-configuration">IP Name Servers Device Configuration</h4>
+<pre><code class="language-eos">ip name-server vrf MGMT 8.8.4.4
+ip name-server vrf MGMT 8.8.8.8
+</code></pre>
+<h3 id="clock-settings">Clock Settings</h3>
+<h4 id="clock-timezone-settings">Clock Timezone Settings</h4>
+<p>Clock Timezone is set to <strong>UTC</strong>.</p>
+<h4 id="clock-device-configuration">Clock Device Configuration</h4>
+<pre><code class="language-eos">!
+clock timezone UTC
+</code></pre>
+<h3 id="ntp">NTP</h3>
+<h4 id="ntp-summary">NTP Summary</h4>
+<h5 id="ntp-servers">NTP Servers</h5>
+<table>
+<thead>
+<tr>
+<th>Server</th>
+<th>VRF</th>
+<th>Preferred</th>
+<th>Burst</th>
+<th>iBurst</th>
+<th>Version</th>
+<th>Min Poll</th>
+<th>Max Poll</th>
+<th>Local-interface</th>
+<th>Key</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>216.239.35.8</td>
+<td>MGMT</td>
+<td>True</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>216.239.35.12</td>
+<td>MGMT</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h4 id="ntp-device-configuration">NTP Device Configuration</h4>
+<pre><code class="language-eos">!
+ntp server vrf MGMT 216.239.35.8 prefer
+ntp server vrf MGMT 216.239.35.12
+</code></pre>
+<h3 id="management-ssh">Management SSH</h3>
+<h4 id="vrfs">VRFs</h4>
+<table>
+<thead>
+<tr>
+<th>VRF</th>
+<th>Enabled</th>
+<th>IPv4 ACL</th>
+<th>IPv6 ACL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MGMT</td>
+<td>True</td>
+<td>SSH-ACL</td>
+<td>-</td>
+</tr>
+<tr>
+<td>default</td>
+<td>False</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h4 id="other-ssh-settings">Other SSH Settings</h4>
+<table>
+<thead>
+<tr>
+<th>Idle Timeout</th>
+<th>Connection Limit</th>
+<th>Max from a single Host</th>
+<th>Ciphers</th>
+<th>Key-exchange methods</th>
+<th>MAC algorithms</th>
+<th>Hostkey server algorithms</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>3600</td>
+<td>-</td>
+<td>-</td>
+<td>default</td>
+<td>default</td>
+<td>default</td>
+<td>default</td>
+</tr>
+</tbody>
+</table>
+<h4 id="management-ssh-device-configuration">Management SSH Device Configuration</h4>
+<pre><code class="language-eos">!
+management ssh
+   ip access-group SSH-ACL vrf MGMT in
+   idle-timeout 3600
+   !
+   vrf default
+      shutdown
+   !
+   vrf MGMT
+      no shutdown
+</code></pre>
+<h3 id="management-api-http">Management API HTTP</h3>
+<h4 id="management-api-http-summary">Management API HTTP Summary</h4>
+<table>
+<thead>
+<tr>
+<th>HTTP</th>
+<th>HTTPS</th>
+<th>UNIX-Socket</th>
+<th>Default Services</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>True</td>
+<td>True</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h4 id="management-api-vrf-access">Management API VRF Access</h4>
+<table>
+<thead>
+<tr>
+<th>VRF Name</th>
+<th>IPv4 ACL</th>
+<th>IPv6 ACL</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MGMT</td>
+<td>EAPI-ACL</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h4 id="management-api-http-device-configuration">Management API HTTP Device Configuration</h4>
+<pre><code class="language-eos">!
+management api http-commands
+   protocol https
+   protocol http
+   no shutdown
+   !
+   vrf MGMT
+      no shutdown
+      ip access-group EAPI-ACL
+</code></pre>
+<h2 id="authentication">Authentication</h2>
+<h3 id="local-users">Local Users</h3>
+<h4 id="local-users-summary">Local Users Summary</h4>
+<table>
+<thead>
+<tr>
+<th>User</th>
+<th>Privilege</th>
+<th>Role</th>
+<th>Disabled</th>
+<th>Shell</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>admin</td>
+<td>15</td>
+<td>network-admin</td>
+<td>False</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h4 id="local-users-device-configuration">Local Users Device Configuration</h4>
+<pre><code class="language-eos">!
+username admin privilege 15 role network-admin secret sha512 &lt;removed&gt;
+username admin ssh-key ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAVh7Boic8iWMtg3McsMXB17RGyRdFldvqulp/g+gZ9L DENOG17 Repo
+</code></pre>
+<h3 id="enable-password">Enable Password</h3>
+<p>Enable password has been disabled</p>
+<h3 id="aaa-authentication">AAA Authentication</h3>
+<h4 id="aaa-authentication-summary">AAA Authentication Summary</h4>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Sub-type</th>
+<th>User Stores</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Login</td>
+<td>default</td>
+<td>local</td>
+</tr>
+<tr>
+<td>Login</td>
+<td>console</td>
+<td>local</td>
+</tr>
+</tbody>
+</table>
+<h4 id="aaa-authentication-device-configuration">AAA Authentication Device Configuration</h4>
+<pre><code class="language-eos">aaa authentication login default local
+aaa authentication login console local
+!
+</code></pre>
+<h3 id="aaa-authorization">AAA Authorization</h3>
+<h4 id="aaa-authorization-summary">AAA Authorization Summary</h4>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>User Stores</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Exec</td>
+<td>none</td>
+</tr>
+</tbody>
+</table>
+<p>Authorization for configuration commands is disabled.</p>
+<h4 id="aaa-authorization-device-configuration">AAA Authorization Device Configuration</h4>
+<pre><code class="language-eos">aaa authorization exec default none
+!
+</code></pre>
+<h2 id="monitoring">Monitoring</h2>
+<h3 id="terminattr-daemon">TerminAttr Daemon</h3>
+<h4 id="terminattr-daemon-summary">TerminAttr Daemon Summary</h4>
+<table>
+<thead>
+<tr>
+<th>CV Compression</th>
+<th>CloudVision Servers</th>
+<th>VRF</th>
+<th>Authentication</th>
+<th>Smash Excludes</th>
+<th>Ingest Exclude</th>
+<th>Bypass AAA</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>gzip</td>
+<td>apiserver.cv-prod-us-central1-c.arista.io:443</td>
+<td>MGMT</td>
+<td>token-secure,/tmp/cv-onboarding-token</td>
+<td>ale,flexCounter,hardware,kni,pulse,strata</td>
+<td>-</td>
+<td>True</td>
+</tr>
+</tbody>
+</table>
+<h4 id="terminattr-daemon-device-configuration">TerminAttr Daemon Device Configuration</h4>
+<pre><code class="language-eos">!
+daemon TerminAttr
+   exec /usr/bin/TerminAttr -cvaddr=apiserver.cv-prod-us-central1-c.arista.io:443 -cvauth=token-secure,/tmp/cv-onboarding-token -cvvrf=MGMT -disableaaa -smashexcludes=ale,flexCounter,hardware,kni,pulse,strata -taillogs
+   no shutdown
+</code></pre>
+<h2 id="spanning-tree">Spanning Tree</h2>
+<h3 id="spanning-tree-summary">Spanning Tree Summary</h3>
+<p>STP mode: <strong>none</strong></p>
+<h3 id="spanning-tree-device-configuration">Spanning Tree Device Configuration</h3>
+<pre><code class="language-eos">!
+spanning-tree mode none
+</code></pre>
+<h2 id="internal-vlan-allocation-policy">Internal VLAN Allocation Policy</h2>
+<h3 id="internal-vlan-allocation-policy-summary">Internal VLAN Allocation Policy Summary</h3>
+<table>
+<thead>
+<tr>
+<th>Policy Allocation</th>
+<th>Range Beginning</th>
+<th>Range Ending</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ascending</td>
+<td>3500</td>
+<td>4000</td>
+</tr>
+</tbody>
+</table>
+<h3 id="internal-vlan-allocation-policy-device-configuration">Internal VLAN Allocation Policy Device Configuration</h3>
+<pre><code class="language-eos">!
+vlan internal order ascending range 3500 4000
+</code></pre>
+<h2 id="vlans">VLANs</h2>
+<h3 id="vlans-summary">VLANs Summary</h3>
+<table>
+<thead>
+<tr>
+<th>VLAN ID</th>
+<th>Name</th>
+<th>Trunk Groups</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>unused</td>
+<td>DO_NOT_USE</td>
+</tr>
+</tbody>
+</table>
+<h3 id="vlans-device-configuration">VLANs Device Configuration</h3>
+<pre><code class="language-eos">!
+vlan 1
+   name unused
+   state suspend
+   trunk group DO_NOT_USE
+</code></pre>
+<h2 id="mac-address-table">MAC Address Table</h2>
+<h3 id="mac-address-table-summary">MAC Address Table Summary</h3>
+<ul>
+<li>MAC address table entry maximum age: 1800 seconds</li>
+</ul>
+<h3 id="mac-address-table-device-configuration">MAC Address Table Device Configuration</h3>
+<pre><code class="language-eos">!
+mac address-table aging-time 1800
+</code></pre>
+<h2 id="interfaces">Interfaces</h2>
+<h3 id="switchport-default">Switchport Default</h3>
+<h4 id="switchport-defaults-summary">Switchport Defaults Summary</h4>
+<ul>
+<li>Default Switchport Mode: routed</li>
+</ul>
+<h4 id="switchport-default-device-configuration">Switchport Default Device Configuration</h4>
+<pre><code class="language-eos">!
+switchport default mode routed
+</code></pre>
+<h3 id="interface-defaults">Interface Defaults</h3>
+<h4 id="interface-defaults-summary">Interface Defaults Summary</h4>
+<ul>
+<li>
+<p>Default Ethernet Interface Shutdown: False</p>
+</li>
+<li>
+<p>Default Routed Interface MTU: 1500</p>
+</li>
+</ul>
+<h4 id="interface-defaults-device-configuration">Interface Defaults Device Configuration</h4>
+<pre><code class="language-eos">!
+interface defaults
+   mtu 1500
+   ethernet
+      no shutdown
+</code></pre>
+<h3 id="ethernet-interfaces">Ethernet Interfaces</h3>
+<h4 id="ethernet-interfaces-summary">Ethernet Interfaces Summary</h4>
+<h5 id="l2">L2</h5>
+<table>
+<thead>
+<tr>
+<th>Interface</th>
+<th>Description</th>
+<th>Mode</th>
+<th>VLANs</th>
+<th>Native VLAN</th>
+<th>Trunk Group</th>
+<th>Channel-Group</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>*Inherited from Port-Channel Interface</p>
+<h5 id="ipv4_1">IPv4</h5>
+<table>
+<thead>
+<tr>
+<th>Interface</th>
+<th>Description</th>
+<th>Channel Group</th>
+<th>IP Address</th>
+<th>VRF</th>
+<th>MTU</th>
+<th>Shutdown</th>
+<th>ACL In</th>
+<th>ACL Out</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ethernet1</td>
+<td>P2P_as65109-2_Ethernet1</td>
+<td>-</td>
+<td>10.109.0.0/31</td>
+<td>default</td>
+<td>1500</td>
+<td>False</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Ethernet2</td>
+<td>P2P_as65109-3_Ethernet1</td>
+<td>-</td>
+<td>10.109.0.2/31</td>
+<td>default</td>
+<td>1500</td>
+<td>False</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Ethernet3</td>
+<td>P2P_CORE1_Ethernet12</td>
+<td>-</td>
+<td>10.0.0.17/31</td>
+<td>default</td>
+<td>1500</td>
+<td>False</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Ethernet4</td>
+<td>P2P_CORE2_Ethernet32</td>
+<td>-</td>
+<td>10.1.0.45/31</td>
+<td>default</td>
+<td>1500</td>
+<td>False</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h5 id="ipv6_1">IPv6</h5>
+<table>
+<thead>
+<tr>
+<th>Interface</th>
+<th>Description</th>
+<th>Channel Group</th>
+<th>IPv6 Address</th>
+<th>VRF</th>
+<th>MTU</th>
+<th>Shutdown</th>
+<th>ND RA Disabled</th>
+<th>Managed Config Flag</th>
+<th>IPv6 ACL In</th>
+<th>IPv6 ACL Out</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ethernet1</td>
+<td>P2P_as65109-2_Ethernet1</td>
+<td>-</td>
+<td>-</td>
+<td>default</td>
+<td>1500</td>
+<td>False</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Ethernet2</td>
+<td>P2P_as65109-3_Ethernet1</td>
+<td>-</td>
+<td>-</td>
+<td>default</td>
+<td>1500</td>
+<td>False</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Ethernet3</td>
+<td>P2P_CORE1_Ethernet12</td>
+<td>-</td>
+<td>2001:db8:0:0:109::1/127</td>
+<td>default</td>
+<td>1500</td>
+<td>False</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Ethernet4</td>
+<td>P2P_CORE2_Ethernet32</td>
+<td>-</td>
+<td>2001:db8:1:0:109:1::1/127</td>
+<td>default</td>
+<td>1500</td>
+<td>False</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h5 id="isis">ISIS</h5>
+<table>
+<thead>
+<tr>
+<th>Interface</th>
+<th>Channel Group</th>
+<th>ISIS Instance</th>
+<th>ISIS BFD</th>
+<th>ISIS Metric</th>
+<th>Mode</th>
+<th>ISIS Circuit Type</th>
+<th>Hello Padding</th>
+<th>ISIS Authentication Mode</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ethernet1</td>
+<td>-</td>
+<td>CORE</td>
+<td>-</td>
+<td>50</td>
+<td>point-to-point</td>
+<td>level-2</td>
+<td>True</td>
+<td>md5</td>
+</tr>
+<tr>
+<td>Ethernet2</td>
+<td>-</td>
+<td>CORE</td>
+<td>-</td>
+<td>50</td>
+<td>point-to-point</td>
+<td>level-2</td>
+<td>True</td>
+<td>md5</td>
+</tr>
+</tbody>
+</table>
+<h4 id="ethernet-interfaces-device-configuration">Ethernet Interfaces Device Configuration</h4>
+<pre><code class="language-eos">!
+interface Ethernet1
+   description P2P_as65109-2_Ethernet1
+   no shutdown
+   mtu 1500
+   no switchport
+   ip address 10.109.0.0/31
+   ipv6 enable
+   mpls ip
+   isis enable CORE
+   isis circuit-type level-2
+   isis metric 50
+   isis hello padding
+   isis network point-to-point
+   isis authentication mode md5
+   isis authentication key 7 &lt;removed&gt;
+!
+interface Ethernet2
+   description P2P_as65109-3_Ethernet1
+   no shutdown
+   mtu 1500
+   no switchport
+   ip address 10.109.0.2/31
+   ipv6 enable
+   mpls ip
+   isis enable CORE
+   isis circuit-type level-2
+   isis metric 50
+   isis hello padding
+   isis network point-to-point
+   isis authentication mode md5
+   isis authentication key 7 &lt;removed&gt;
+!
+interface Ethernet3
+   description P2P_CORE1_Ethernet12
+   no shutdown
+   mtu 1500
+   no switchport
+   ip address 10.0.0.17/31
+   ipv6 address 2001:db8:0:0:109::1/127
+!
+interface Ethernet4
+   description P2P_CORE2_Ethernet32
+   no shutdown
+   mtu 1500
+   no switchport
+   ip address 10.1.0.45/31
+   ipv6 address 2001:db8:1:0:109:1::1/127
+</code></pre>
+<h3 id="loopback-interfaces">Loopback Interfaces</h3>
+<h4 id="loopback-interfaces-summary">Loopback Interfaces Summary</h4>
+<h5 id="ipv4_2">IPv4</h5>
+<table>
+<thead>
+<tr>
+<th>Interface</th>
+<th>Description</th>
+<th>VRF</th>
+<th>IP Address</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Loopback0</td>
+<td>ROUTER_ID</td>
+<td>default</td>
+<td>10.109.1.1/32</td>
+</tr>
+</tbody>
+</table>
+<h5 id="ipv6_2">IPv6</h5>
+<table>
+<thead>
+<tr>
+<th>Interface</th>
+<th>Description</th>
+<th>VRF</th>
+<th>IPv6 Address</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Loopback0</td>
+<td>ROUTER_ID</td>
+<td>default</td>
+<td>2001:db8:109::1/128</td>
+</tr>
+</tbody>
+</table>
+<h5 id="isis_1">ISIS</h5>
+<table>
+<thead>
+<tr>
+<th>Interface</th>
+<th>ISIS instance</th>
+<th>ISIS metric</th>
+<th>Interface mode</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Loopback0</td>
+<td>CORE</td>
+<td>-</td>
+<td>passive</td>
+</tr>
+</tbody>
+</table>
+<h4 id="loopback-interfaces-device-configuration">Loopback Interfaces Device Configuration</h4>
+<pre><code class="language-eos">!
+interface Loopback0
+   description ROUTER_ID
+   no shutdown
+   ip address 10.109.1.1/32
+   ipv6 address 2001:db8:109::1/128
+   node-segment ipv4 index 1
+   node-segment ipv6 index 1
+   isis enable CORE
+   isis passive
+</code></pre>
+<h2 id="routing">Routing</h2>
+<h3 id="service-routing-protocols-model">Service Routing Protocols Model</h3>
+<p>Multi agent routing protocol model enabled</p>
+<pre><code class="language-eos">!
+service routing protocols model multi-agent
+</code></pre>
+<h3 id="virtual-router-mac-address">Virtual Router MAC Address</h3>
+<h4 id="virtual-router-mac-address-summary">Virtual Router MAC Address Summary</h4>
+<p>Virtual Router MAC Address: 00:1c:73:00:dc:09</p>
+<h4 id="virtual-router-mac-address-device-configuration">Virtual Router MAC Address Device Configuration</h4>
+<pre><code class="language-eos">!
+ip virtual-router mac-address 00:1c:73:00:dc:09
+</code></pre>
+<h3 id="ip-routing">IP Routing</h3>
+<h4 id="ip-routing-summary">IP Routing Summary</h4>
+<table>
+<thead>
+<tr>
+<th>VRF</th>
+<th>Routing Enabled</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>default</td>
+<td>True</td>
+</tr>
+<tr>
+<td>MGMT</td>
+<td>False</td>
+</tr>
+</tbody>
+</table>
+<h4 id="ip-routing-device-configuration">IP Routing Device Configuration</h4>
+<pre><code class="language-eos">!
+ip routing
+no ip icmp redirect
+no ip routing vrf MGMT
+</code></pre>
+<h3 id="ipv6-routing">IPv6 Routing</h3>
+<h4 id="ipv6-routing-summary">IPv6 Routing Summary</h4>
+<table>
+<thead>
+<tr>
+<th>VRF</th>
+<th>Routing Enabled</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>default</td>
+<td>True</td>
+</tr>
+<tr>
+<td>MGMT</td>
+<td>false</td>
+</tr>
+</tbody>
+</table>
+<h4 id="ipv6-routing-device-configuration">IPv6 Routing Device Configuration</h4>
+<pre><code class="language-eos">!
+ipv6 unicast-routing
+</code></pre>
+<h3 id="static-routes">Static Routes</h3>
+<h4 id="static-routes-summary">Static Routes Summary</h4>
+<table>
+<thead>
+<tr>
+<th>VRF</th>
+<th>Destination Prefix</th>
+<th>Next Hop IP</th>
+<th>Exit interface</th>
+<th>Administrative Distance</th>
+<th>Tag</th>
+<th>Route Name</th>
+<th>Metric</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MGMT</td>
+<td>0.0.0.0/0</td>
+<td>172.100.100.1</td>
+<td>-</td>
+<td>1</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h4 id="static-routes-device-configuration">Static Routes Device Configuration</h4>
+<pre><code class="language-eos">!
+ip route vrf MGMT 0.0.0.0/0 172.100.100.1
+</code></pre>
+<h3 id="arp">ARP</h3>
+<p>Global ARP timeout: 1500</p>
+<h4 id="arp-device-configuration">ARP Device Configuration</h4>
+<pre><code class="language-eos">!
+arp aging timeout default 1500
+</code></pre>
+<h3 id="router-isis">Router ISIS</h3>
+<h4 id="router-isis-summary">Router ISIS Summary</h4>
+<table>
+<thead>
+<tr>
+<th>Settings</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Instance</td>
+<td>CORE</td>
+</tr>
+<tr>
+<td>Net-ID</td>
+<td>49.0001.0101.0900.1001.00</td>
+</tr>
+<tr>
+<td>Type</td>
+<td>level-2</td>
+</tr>
+<tr>
+<td>Router-ID</td>
+<td>10.109.1.1</td>
+</tr>
+<tr>
+<td>Log Adjacency Changes</td>
+<td>True</td>
+</tr>
+<tr>
+<td>SR MPLS Enabled</td>
+<td>True</td>
+</tr>
+</tbody>
+</table>
+<h4 id="isis-interfaces-summary">ISIS Interfaces Summary</h4>
+<table>
+<thead>
+<tr>
+<th>Interface</th>
+<th>ISIS Instance</th>
+<th>ISIS Metric</th>
+<th>Interface Mode</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ethernet1</td>
+<td>CORE</td>
+<td>50</td>
+<td>point-to-point</td>
+</tr>
+<tr>
+<td>Ethernet2</td>
+<td>CORE</td>
+<td>50</td>
+<td>point-to-point</td>
+</tr>
+<tr>
+<td>Loopback0</td>
+<td>CORE</td>
+<td>-</td>
+<td>passive</td>
+</tr>
+</tbody>
+</table>
+<h4 id="isis-segment-routing-node-sid">ISIS Segment-routing Node-SID</h4>
+<table>
+<thead>
+<tr>
+<th>Loopback</th>
+<th>IPv4 Index</th>
+<th>IPv6 Index</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Loopback0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<h4 id="isis-ipv4-address-family-summary">ISIS IPv4 Address Family Summary</h4>
+<table>
+<thead>
+<tr>
+<th>Settings</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IPv4 Address-family Enabled</td>
+<td>True</td>
+</tr>
+<tr>
+<td>Maximum-paths</td>
+<td>4</td>
+</tr>
+</tbody>
+</table>
+<h4 id="isis-ipv6-address-family-summary">ISIS IPv6 Address Family Summary</h4>
+<table>
+<thead>
+<tr>
+<th>Settings</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IPv6 Address-family Enabled</td>
+<td>True</td>
+</tr>
+<tr>
+<td>Maximum-paths</td>
+<td>4</td>
+</tr>
+</tbody>
+</table>
+<h4 id="router-isis-device-configuration">Router ISIS Device Configuration</h4>
+<pre><code class="language-eos">!
+router isis CORE
+   net 49.0001.0101.0900.1001.00
+   router-id ipv4 10.109.1.1
+   is-type level-2
+   log-adjacency-changes
+   !
+   address-family ipv4 unicast
+      maximum-paths 4
+   !
+   address-family ipv6 unicast
+      maximum-paths 4
+   !
+   segment-routing mpls
+      no shutdown
+</code></pre>
+<h3 id="router-bgp">Router BGP</h3>
+<p>ASN Notation: asplain</p>
+<h4 id="router-bgp-summary">Router BGP Summary</h4>
+<table>
+<thead>
+<tr>
+<th>BGP AS</th>
+<th>Router ID</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>65109</td>
+<td>10.109.1.1</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>BGP Tuning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>timers bgp 5 15</td>
+</tr>
+<tr>
+<td>neighbor default send-community</td>
+</tr>
+<tr>
+<td>update wait-install</td>
+</tr>
+<tr>
+<td>no bgp default ipv4-unicast</td>
+</tr>
+<tr>
+<td>maximum-paths 4 ecmp 4</td>
+</tr>
+</tbody>
+</table>
+<h4 id="router-bgp-peer-groups">Router BGP Peer Groups</h4>
+<h5 id="mpls-overlay-peers">MPLS-OVERLAY-PEERS</h5>
+<table>
+<thead>
+<tr>
+<th>Settings</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Address Family</td>
+<td>mpls</td>
+</tr>
+<tr>
+<td>Remote AS</td>
+<td>65109</td>
+</tr>
+<tr>
+<td>Source</td>
+<td>Loopback0</td>
+</tr>
+<tr>
+<td>BFD</td>
+<td>True</td>
+</tr>
+<tr>
+<td>Send community</td>
+<td>all</td>
+</tr>
+<tr>
+<td>Maximum routes</td>
+<td>0 (no limit)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="bgp-neighbors">BGP Neighbors</h4>
+<table>
+<thead>
+<tr>
+<th>Neighbor</th>
+<th>Remote AS</th>
+<th>VRF</th>
+<th>Shutdown</th>
+<th>Send-community</th>
+<th>Maximum-routes</th>
+<th>Allowas-in</th>
+<th>BFD</th>
+<th>RIB Pre-Policy Retain</th>
+<th>Route-Reflector Client</th>
+<th>Passive</th>
+<th>TTL Max Hops</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10.109.1.2</td>
+<td>Inherited from peer group MPLS-OVERLAY-PEERS</td>
+<td>default</td>
+<td>-</td>
+<td>Inherited from peer group MPLS-OVERLAY-PEERS</td>
+<td>Inherited from peer group MPLS-OVERLAY-PEERS</td>
+<td>-</td>
+<td>Inherited from peer group MPLS-OVERLAY-PEERS</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>10.109.1.3</td>
+<td>Inherited from peer group MPLS-OVERLAY-PEERS</td>
+<td>default</td>
+<td>-</td>
+<td>Inherited from peer group MPLS-OVERLAY-PEERS</td>
+<td>Inherited from peer group MPLS-OVERLAY-PEERS</td>
+<td>-</td>
+<td>Inherited from peer group MPLS-OVERLAY-PEERS</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h4 id="router-bgp-vpn-ipv4-address-family">Router BGP VPN-IPv4 Address Family</h4>
+<h5 id="vpn-ipv4-peer-groups">VPN-IPv4 Peer Groups</h5>
+<table>
+<thead>
+<tr>
+<th>Peer Group</th>
+<th>Activate</th>
+<th>Route-map In</th>
+<th>Route-map Out</th>
+<th>RCF In</th>
+<th>RCF Out</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MPLS-OVERLAY-PEERS</td>
+<td>True</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h4 id="router-bgp-device-configuration">Router BGP Device Configuration</h4>
+<pre><code class="language-eos">!
+router bgp 65109
+   router-id 10.109.1.1
+   update wait-install
+   no bgp default ipv4-unicast
+   maximum-paths 4 ecmp 4
+   timers bgp 5 15
+   neighbor default send-community
+   neighbor MPLS-OVERLAY-PEERS peer group
+   neighbor MPLS-OVERLAY-PEERS remote-as 65109
+   neighbor MPLS-OVERLAY-PEERS update-source Loopback0
+   neighbor MPLS-OVERLAY-PEERS bfd
+   neighbor MPLS-OVERLAY-PEERS password 7 &lt;removed&gt;
+   neighbor MPLS-OVERLAY-PEERS send-community
+   neighbor MPLS-OVERLAY-PEERS maximum-routes 0
+   neighbor 10.109.1.2 peer group MPLS-OVERLAY-PEERS
+   neighbor 10.109.1.2 description as65109-2_Loopback0
+   neighbor 10.109.1.3 peer group MPLS-OVERLAY-PEERS
+   neighbor 10.109.1.3 description as65109-3_Loopback0
+   !
+   address-family ipv4
+      neighbor MPLS-OVERLAY-PEERS activate
+   !
+   address-family vpn-ipv4
+      neighbor MPLS-OVERLAY-PEERS activate
+      neighbor default encapsulation mpls next-hop-self source-interface Loopback0
+</code></pre>
+<h2 id="bfd">BFD</h2>
+<h3 id="router-bfd">Router BFD</h3>
+<h4 id="router-bfd-multihop-summary">Router BFD Multihop Summary</h4>
+<table>
+<thead>
+<tr>
+<th>Interval</th>
+<th>Minimum RX</th>
+<th>Multiplier</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>300</td>
+<td>300</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<h4 id="router-bfd-device-configuration">Router BFD Device Configuration</h4>
+<pre><code class="language-eos">!
+router bfd
+   multihop interval 300 min-rx 300 multiplier 3
+</code></pre>
+<h2 id="mpls">MPLS</h2>
+<h3 id="mpls-and-ldp">MPLS and LDP</h3>
+<h4 id="mpls-and-ldp-summary">MPLS and LDP Summary</h4>
+<table>
+<thead>
+<tr>
+<th>Setting</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MPLS IP Enabled</td>
+<td>True</td>
+</tr>
+<tr>
+<td>LDP Enabled</td>
+<td>False</td>
+</tr>
+<tr>
+<td>LDP Router ID</td>
+<td>-</td>
+</tr>
+<tr>
+<td>LDP Interface Disabled Default</td>
+<td>-</td>
+</tr>
+<tr>
+<td>LDP Transport-Address Interface</td>
+<td>-</td>
+</tr>
+<tr>
+<td>ICMP Fragmentation-Needed Tunneling Enabled</td>
+<td>True</td>
+</tr>
+<tr>
+<td>ICMP TTL-Exceeded Tunneling Enabled</td>
+<td>True</td>
+</tr>
+</tbody>
+</table>
+<h3 id="mpls-interfaces">MPLS Interfaces</h3>
+<table>
+<thead>
+<tr>
+<th>Interface</th>
+<th>MPLS IP Enabled</th>
+<th>LDP Enabled</th>
+<th>IGP Sync</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ethernet1</td>
+<td>True</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>Ethernet2</td>
+<td>True</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h3 id="mpls-device-configuration">MPLS Device Configuration</h3>
+<pre><code class="language-eos">!
+mpls ip
+!
+mpls icmp fragmentation-needed tunneling
+mpls icmp ttl-exceeded tunneling
+</code></pre>
+<h2 id="multicast">Multicast</h2>
+<h3 id="ip-igmp-snooping">IP IGMP Snooping</h3>
+<h4 id="ip-igmp-snooping-summary">IP IGMP Snooping Summary</h4>
+<table>
+<thead>
+<tr>
+<th>IGMP Snooping</th>
+<th>Fast Leave</th>
+<th>Interface Restart Query</th>
+<th>Proxy</th>
+<th>Restart Query Interval</th>
+<th>Robustness Variable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Disabled</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h4 id="ip-igmp-snooping-device-configuration">IP IGMP Snooping Device Configuration</h4>
+<pre><code class="language-eos">!
+no ip igmp snooping
+</code></pre>
+<h2 id="acl">ACL</h2>
+<h3 id="standard-access-lists">Standard Access-lists</h3>
+<h4 id="standard-access-lists-summary">Standard Access-lists Summary</h4>
+<h5 id="eapi-acl">EAPI-ACL</h5>
+<table>
+<thead>
+<tr>
+<th>Sequence</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10</td>
+<td>permit 0.0.0.0/0</td>
+</tr>
+</tbody>
+</table>
+<h5 id="snmp-acl">SNMP-ACL</h5>
+<table>
+<thead>
+<tr>
+<th>Sequence</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10</td>
+<td>permit 0.0.0.0/0</td>
+</tr>
+</tbody>
+</table>
+<h5 id="ssh-acl">SSH-ACL</h5>
+<table>
+<thead>
+<tr>
+<th>Sequence</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>10</td>
+<td>permit 0.0.0.0/0</td>
+</tr>
+</tbody>
+</table>
+<h4 id="standard-access-lists-device-configuration">Standard Access-lists Device Configuration</h4>
+<pre><code class="language-eos">!
+ip access-list standard EAPI-ACL
+   10 permit 0.0.0.0/0
+!
+ip access-list standard SNMP-ACL
+   10 permit 0.0.0.0/0
+!
+ip access-list standard SSH-ACL
+   10 permit 0.0.0.0/0
+</code></pre>
+<h2 id="vrf-instances">VRF Instances</h2>
+<h3 id="vrf-instances-summary">VRF Instances Summary</h3>
+<table>
+<thead>
+<tr>
+<th>VRF Name</th>
+<th>IP Routing</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MGMT</td>
+<td>disabled</td>
+</tr>
+</tbody>
+</table>
+<h3 id="vrf-instances-device-configuration">VRF Instances Device Configuration</h3>
+<pre><code class="language-eos">!
+vrf instance MGMT
+</code></pre>
+<h2 id="eos-cli-device-configuration">EOS CLI Device Configuration</h2>
+<pre><code class="language-eos">!
+aaa authorization exec default local none
+</code></pre>
+</body>
+</html>

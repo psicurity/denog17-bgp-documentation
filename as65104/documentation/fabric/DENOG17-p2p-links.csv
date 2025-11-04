@@ -1,0 +1,5 @@
+Type,Node,Node Interface,Leaf IP Address,Peer Type,Peer Node,Peer Interface,Peer IP Address
+pe,as65104-1,Ethernet1,10.104.0.0/31,pe,as65104-2,Ethernet1,10.104.0.1/31
+pe,as65104-1,Ethernet2,10.104.0.2/31,pe,as65104-3,Ethernet1,10.104.0.3/31
+pe,as65104-2,Ethernet2,10.104.0.4/31,pe,as65104-3,Ethernet2,10.104.0.5/31
+pe,as65104-3,Ethernet3,10.104.0.14/31,p,as65204-cust,Ethernet1,10.104.0.15/31
